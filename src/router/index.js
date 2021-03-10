@@ -1,20 +1,26 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Registration from '@/components/Registration.vue';
-import StartPage from '@/components/StartPage.vue';
+import LoginPage from '@/components/LoginPage.vue';
+import HomePage from '@/components/HomePage.vue';
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'StartPage',
-    component: StartPage
+    name: 'LoginPage',
+    component: LoginPage
   },
   {
     path: '/registration',
-    name: 'registration',
-    component: Registration,
+    name: 'Registration',
+    component: Registration
+  },
+  {
+    path: '/home',
+    name: 'HomePage',
+    component: HomePage
   }
 ]
 

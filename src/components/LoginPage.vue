@@ -1,5 +1,5 @@
 <template>
-    <div class="start-page">
+    <div class="login-page">
         <div class="card card0 border-0">
             <div class="row" style="height: 100%">
 
@@ -17,9 +17,9 @@
 
                         <div class="row px-3">
                             <label>
-                                <h3>Email</h3>
+                                <h3>Felhasználónév</h3>
                             </label>
-                            <input type="text" name="email" placeholder="Email">
+                            <input type="text" name="username" placeholder="Felhasználónév">
                         </div>
 
                         <div class="row px-3">
@@ -54,7 +54,7 @@
 
 <script>
 export default {
-  name: 'StartPage',
+  name: 'LoginPage',
   props: {
     msg: String
   }
@@ -170,7 +170,8 @@ a {
     background-color: #f165df;
     width: 150px;
     color: #fff;
-    border-radius: 3px
+    border-radius: 3px;
+    margin: 20px 0 20px;
 }
 
 .btn-pink:hover {
