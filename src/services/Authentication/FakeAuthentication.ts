@@ -1,6 +1,6 @@
 import { Authentication } from '../Authentication';
 // TODO: save the state in case of f5-refresh
-class FakeAuthentication implements Authentication {
+export class FakeAuthentication implements Authentication {
   private static readonly SAVED_USER_NAMES_KEY: string = 'savedUserNames';
   private storage: Storage;
   private _isLoggedIn: boolean = false;

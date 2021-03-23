@@ -1,26 +1,41 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import VueRouter, { NavigationGuard, RouteConfig } from 'vue-router'
 import Registration from '@/components/Registration.vue';
 import LoginPage from '@/components/LoginPage.vue';
 import HomePage from '@/components/HomePage.vue';
+import { FakeAuthentication } from '@/services/Authentication/FakeAuthentication';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-const routes = [
+const authenticationService = new FakeAuthentication(localStorage);
+
+const createRouteGuardBasedOnLogin = (isUserShouldBeLoggedIn: boolean, redirectPath: string): NavigationGuard => {
+  return (_to, _from, next) => {
+    debugger;
+    if (authenticationService.isLoggedIn() !== isUserShouldBeLoggedIn)
+      next(redirectPath);
+    next();
+  };
+}
+
+const routes: RouteConfig[] = [
   {
     path: '/',
     name: 'LoginPage',
-    component: LoginPage
+    component: LoginPage,
+    beforeEnter: createRouteGuardBasedOnLogin(false, '/home'),
   },
   {
     path: '/registration',
     name: 'Registration',
-    component: Registration
+    component: Registration,
+    beforeEnter: createRouteGuardBasedOnLogin(false, '/home'),
   },
   {
     path: '/home',
     name: 'HomePage',
-    component: HomePage
+    component: HomePage,
+    beforeEnter: createRouteGuardBasedOnLogin(true, '/'),
   }
 ]
 
