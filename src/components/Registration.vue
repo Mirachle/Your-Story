@@ -6,39 +6,32 @@
                 <div class="col-lg-6 center">
                     <div class="card2 card border-0 fuchsia">
                         <h1>Regisztárció</h1>
+                        <form @submit.prevent="register">
+                            <div class="row px-3">
+                                <label for="username">
+                                    <h4>Felhasználónév</h4>
+                                </label>
+                                <input id="username" v-model="name" type="text" placeholder="Felhasználónév" required>
+                            </div>
 
-                        <div class="row px-3">
-                            <label>
-                                <h4>Email</h4>
-                            </label>
-                            <input type="text" name="email" placeholder="Email">
-                        </div>
+                            <div class="row px-3">
+                                <label for="password">
+                                    <h4>Jelszó</h4>
+                                </label>
+                                <input id="password" v-model="password" type="password" placeholder="Jelszó" required>
+                            </div>
 
-                        <div class="row px-3">
-                            <label>
-                                <h4>Felhasználónév</h4>
-                            </label>
-                            <input type="text" name="username" placeholder="Felhasználónév">
-                        </div>
+                            <div class="row px-3">
+                                <label for="password-comfirm">
+                                    <h4>Jelszó ismét</h4>
+                                </label>
+                                <input name="password-confirm" id="password-comfirm" v-model="passwordConfirmation" type="password" placeholder="Jelszó" required>
+                            </div>
 
-                        <div class="row px-3">
-                            <label>
-                                <h4>Jelszó</h4>
-                            </label>
-                            <input type="password" name="password" placeholder="Jelszó">
-                        </div>
-
-                        <div class="row px-3">
-                            <label>
-                                <h4>Jelszó ismét</h4>
-                            </label>
-                            <input type="password" name="password" placeholder="Jelszó">
-                        </div>
-
-                        <div class="row">
-                            <button type="submit" class="btn btn-pink text-center">Regisztráció</button>
-                        </div>
-
+                            <div class="row">
+                                <button type="submit" class="btn btn-pink text-center">Regisztráció</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -55,10 +48,43 @@
     </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { Authentication } from '@/services/Authentication';
+import Vue from 'vue';
+
+export default Vue.extend({
   name: 'Registration',
-}
+  props: ["authentication", "redirectToLogin"],
+  data(){
+      return {
+        name : "",
+        email : "",
+        password : "",
+        passwordConfirmation : ""
+      }
+    },
+    methods: {
+      setPasswordConfirmInputInvalid(submitEvent: Event) {
+        const form = submitEvent.target as HTMLFormElement;
+        const passwordConfirmInput = form.elements.namedItem('password-confirm') as HTMLInputElement;
+        passwordConfirmInput.setCustomValidity('A jelszavak nem egyeznek meg egymással.');
+      },
+      async handleRegistrationForValidForm() {
+          // TODO: make it initially typed (maybe we need to upgrade to 3.x vue)
+            const typedAuthentication = this.authentication as Authentication;
+            await typedAuthentication.register(this.name, this.password);
+            this.redirectToLogin();
+      },
+      register: async function (submitEvent: Event) {
+          const isPasswordMismatch = this.passwordConfirmation !== this.password;
+          if (isPasswordMismatch) {
+            this.setPasswordConfirmInputInvalid(submitEvent);
+          } else {
+            this.handleRegistrationForValidForm();
+          }
+      }
+    }
+});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -29,6 +29,7 @@ export class FakeAuthentication implements Authentication {
   }
 
   public async register(username: string, _password: string): Promise<void> {
+    // TODO: throw an error in case of username is already in use
     const savedUserNames = this.readSavedUserNamesFromStorage();
     savedUserNames.push(username);
     const stringifiedSavedUserNames = JSON.stringify(savedUserNames);

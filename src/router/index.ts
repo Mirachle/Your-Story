@@ -11,7 +11,6 @@ const authenticationService = new FakeAuthentication(localStorage);
 
 const createRouteGuardBasedOnLogin = (isUserShouldBeLoggedIn: boolean, redirectPath: string): NavigationGuard => {
   return (_to, _from, next) => {
-    debugger;
     if (authenticationService.isLoggedIn() !== isUserShouldBeLoggedIn)
       next(redirectPath);
     next();
@@ -24,18 +23,21 @@ const routes: RouteConfig[] = [
     name: 'LoginPage',
     component: LoginPage,
     beforeEnter: createRouteGuardBasedOnLogin(false, '/home'),
+    props: { authentication: authenticationService }
   },
   {
     path: '/registration',
     name: 'Registration',
     component: Registration,
     beforeEnter: createRouteGuardBasedOnLogin(false, '/home'),
+    props: { authentication: authenticationService, redirectToLogin: () => { router.push('/')} }
   },
   {
     path: '/home',
     name: 'HomePage',
     component: HomePage,
     beforeEnter: createRouteGuardBasedOnLogin(true, '/'),
+    props: { authentication: authenticationService }
   }
 ]
 
