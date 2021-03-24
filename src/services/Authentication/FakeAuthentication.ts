@@ -1,4 +1,5 @@
 import { Authentication } from '../Authentication';
+import { AuthenticationError } from './AuthenticationError';
 // TODO: save the state in case of f5-refresh
 export class FakeAuthentication implements Authentication {
   private static readonly SAVED_USER_NAMES_KEY: string = 'savedUserNames';
@@ -23,7 +24,7 @@ export class FakeAuthentication implements Authentication {
    const savedUserNames = this.readSavedUserNamesFromStorage();
     const isMatch = savedUserNames.some(savedUserName => savedUserName === username);
     if (!isMatch) {
-      throw new Error('Incorrect username or password.');
+      throw new AuthenticationError('Helytelen felhasználónév vagy jelszó.');
     }
     this._isLoggedIn = true;
   }
@@ -31,6 +32,13 @@ export class FakeAuthentication implements Authentication {
   public async register(username: string, _password: string): Promise<void> {
     // TODO: throw an error in case of username is already in use
     const savedUserNames = this.readSavedUserNamesFromStorage();
+    if (savedUserNames.includes(username)){
+      throw new AuthenticationError("Ez a felhasználónév már létezik.") 
+    }
+    this.saveNewUserNameInStorage(savedUserNames, username);
+  }
+
+  private saveNewUserNameInStorage(savedUserNames: string[], username: string) {
     savedUserNames.push(username);
     const stringifiedSavedUserNames = JSON.stringify(savedUserNames);
     this.storage.setItem(FakeAuthentication.SAVED_USER_NAMES_KEY, stringifiedSavedUserNames);

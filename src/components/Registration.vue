@@ -11,7 +11,7 @@
                                 <label for="username">
                                     <h4>Felhasználónév</h4>
                                 </label>
-                                <input id="username" v-model="name" type="text" placeholder="Felhasználónév" required>
+                                <input v-on:keyup="clearCustomValidityFor" name="username" id="username" v-model="username" type="text" placeholder="Felhasználónév" required>
                             </div>
 
                             <div class="row px-3">
@@ -25,7 +25,7 @@
                                 <label for="password-comfirm">
                                     <h4>Jelszó ismét</h4>
                                 </label>
-                                <input name="password-confirm" id="password-comfirm" v-model="passwordConfirmation" type="password" placeholder="Jelszó" required>
+                                <input v-on:keyup="clearCustomValidityFor" name="password-confirm" id="password-comfirm" v-model="passwordConfirmation" type="password" placeholder="Jelszó" required>
                             </div>
 
                             <div class="row">
@@ -51,36 +51,50 @@
 <script lang="ts">
 import { Authentication } from '@/services/Authentication';
 import Vue from 'vue';
+import { AuthenticationError } from '../services/Authentication/AuthenticationError';
 
 export default Vue.extend({
   name: 'Registration',
   props: ["authentication", "redirectToLogin"],
   data(){
       return {
-        name : "",
-        email : "",
+        username : "",
         password : "",
         passwordConfirmation : ""
       }
     },
     methods: {
-      setPasswordConfirmInputInvalid(submitEvent: Event) {
-        const form = submitEvent.target as HTMLFormElement;
+    clearCustomValidityFor(keyEvent: Event) {
+        const inputElement = keyEvent.target as HTMLInputElement;
+        inputElement.setCustomValidity('');
+    },
+      setPasswordConfirmInputInvalid(form: HTMLFormElement) {
         const passwordConfirmInput = form.elements.namedItem('password-confirm') as HTMLInputElement;
         passwordConfirmInput.setCustomValidity('A jelszavak nem egyeznek meg egymással.');
       },
-      async handleRegistrationForValidForm() {
+      handleRegistrationError(form: HTMLFormElement, authError: AuthenticationError) {
+        const usernameInput = form.elements.namedItem('username') as HTMLInputElement;
+        usernameInput.setCustomValidity(authError.message);
+      },
+      async handleRegistrationForValidForm(form: HTMLFormElement) {
           // TODO: make it initially typed (maybe we need to upgrade to 3.x vue)
+          try {
             const typedAuthentication = this.authentication as Authentication;
-            await typedAuthentication.register(this.name, this.password);
-            this.redirectToLogin();
+            await typedAuthentication.register(this.username, this.password);
+            this.redirectToLogin(); 
+          } catch (e) {
+              if(!AuthenticationError.isAuthenticationError(e))
+                throw e;
+            this.handleRegistrationError(form, e);
+          }
       },
       register: async function (submitEvent: Event) {
+          const form = submitEvent.target as HTMLFormElement;
           const isPasswordMismatch = this.passwordConfirmation !== this.password;
           if (isPasswordMismatch) {
-            this.setPasswordConfirmInputInvalid(submitEvent);
+            this.setPasswordConfirmInputInvalid(form);
           } else {
-            this.handleRegistrationForValidForm();
+            this.handleRegistrationForValidForm(form);
           }
       }
     }
