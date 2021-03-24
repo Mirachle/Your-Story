@@ -20,7 +20,7 @@ export class FakeAuthentication implements Authentication {
     return savedUserNames;
   }
 
-  public async login(username: string, password: string): Promise<void> {
+  public async login(username: string, _password: string): Promise<void> {
    const savedUserNames = this.readSavedUserNamesFromStorage();
     const isMatch = savedUserNames.some(savedUserName => savedUserName === username);
     if (!isMatch) {
@@ -30,7 +30,6 @@ export class FakeAuthentication implements Authentication {
   }
 
   public async register(username: string, _password: string): Promise<void> {
-    // TODO: throw an error in case of username is already in use
     const savedUserNames = this.readSavedUserNamesFromStorage();
     if (savedUserNames.includes(username)){
       throw new AuthenticationError("Ez a felhasználónév már létezik.") 

@@ -3,7 +3,7 @@
         <div class="card card0 border-0">
             <div class="row" style="height: 100%">
 
-                <div class="col-lg-6 center">
+                <div class="col-md-6 center">
                     <div class="card2 card border-0 fuchsia">
                         <h1>Regisztárció</h1>
                         <form @submit.prevent="register">
@@ -35,11 +35,9 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 center">
-                    <div class="card1">
-                        <div class="row">
-                            <img src="https://i.imgur.com/uNGdWHi.png" class="image">
-                        </div>
+                <div class="col-md-6">
+                    <div class="row center">
+                        <img src="@/assets/allinone_original.png" class="image">
                     </div>
                 </div>
 
@@ -55,12 +53,12 @@ import { AuthenticationError } from '../services/Authentication/AuthenticationEr
 
 export default Vue.extend({
   name: 'Registration',
-  props: ["authentication", "redirectToLogin"],
+  props: ['authentication', 'redirectToLogin'],
   data(){
       return {
-        username : "",
-        password : "",
-        passwordConfirmation : ""
+        username : '',
+        password : '',
+        passwordConfirmation : ''
       }
     },
     methods: {
@@ -143,16 +141,7 @@ body {
 }
 
 .image {
-    width: 360px;
-    height: 280px
-}
-
-.border-line {
-    border-right: 1px solid #EEEEEE
-}
-
-.text-sm {
-    font-size: 14px !important
+    width: 95%;
 }
 
 ::placeholder {
@@ -201,11 +190,6 @@ button:focus {
     outline-width: 0
 }
 
-a {
-    color: inherit;
-    cursor: pointer
-}
-
 .btn-pink {
     background-color: #f165df;
     width: 150px;
@@ -220,19 +204,6 @@ a {
 }
 
 @media screen and (max-width: 991px) {
-    .logo {
-        margin-left: 0px
-    }
-
-    .image {
-        width: 300px;
-        height: 220px
-    }
-
-    .border-line {
-        border-right: none
-    }
-
     .card2 {
         border-top: 1px solid #EEEEEE !important;
         margin: 0px 15px
