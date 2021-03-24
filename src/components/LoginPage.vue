@@ -3,47 +3,45 @@
         <div class="card card0 border-0">
             <div class="row" style="height: 100%">
 
-                <div class="col-lg-6 center">
-                    <div class="card1">
-                        <div class="row">
-                            <img src="https://i.imgur.com/uNGdWHi.png" class="image">
-                        </div>
+                <div class="col-md-6 center">
+                    <div class="row center">
+                        <img src="@/assets/allinone_original.png" class="image">
                     </div>
                 </div>
 
-                <div class="col-lg-6 center">
+                <div class="col-md-6 center">
                     <div class="card2 card border-0 fuchsia">
                         <h1>Bejelentkezés</h1>
+                        <form @submit.prevent="login">
+                            <div class="row px-3">
+                                <label>
+                                    <h3>Felhasználónév</h3>
+                                </label>
+                                <input v-on:keyup="clearCustomValidityFor" v-model="username" type="text" name="username" placeholder="Felhasználónév">
+                            </div>
 
-                        <div class="row px-3">
-                            <label>
-                                <h3>Felhasználónév</h3>
-                            </label>
-                            <input type="text" name="username" placeholder="Felhasználónév">
-                        </div>
+                            <div class="row px-3">
+                                <label>
+                                    <h3>Jelszó</h3>
+                                </label>
+                                <input v-model="password" type="password" name="password" placeholder="Jelszó">
+                            </div>
+<!--
+                            <div class="row text-end" >
+                                <a href="#">Elfelejtetted a jelszavad?</a>
+                            </div>
+-->
+                            <div class="row">
+                                <button type="submit" class="btn btn-pink text-center">Bejelentkezés</button>
+                            </div>
 
-                        <div class="row px-3">
-                            <label>
-                                <h3>Jelszó</h3>
-                            </label>
-                            <input type="password" name="password" placeholder="Jelszó">
-                        </div>
-
-                        <div class="row text-end" >
-                            <a href="#">Elfelejtetted a jelszavad?</a>
-                        </div>
-
-                        <div class="row">
-                            <button type="submit" class="btn btn-pink text-center">Bejelentkezés</button>
-                        </div>
-
-                        <div class="row font-weight-bold black text-end">
-                            <small>Még nem regisztráltál?
-                                <router-link to="/registration" class="fuchsia">Regisztáció</router-link>
-                                <router-view/>
-                            </small>
-                        </div>
-
+                            <div class="row font-weight-bold black text-end">
+                                <small>Még nem regisztráltál?
+                                    <router-link to="/registration" class="fuchsia">Regisztáció</router-link>
+                                    <router-view/>
+                                </small>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -52,13 +50,43 @@
     </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue';
+import { Authentication } from '@/services/Authentication';
+import { AuthenticationError } from '../services/Authentication/AuthenticationError';
+
+export default Vue.extend({
   name: 'LoginPage',
-  props: {
-    msg: String
+  props: ['authentication', 'redirectToHome'],
+  data(){
+      return {
+        username : '',
+        password : '',
+      }
+    },
+  methods: {
+      clearCustomValidityFor(keyEvent: Event) {
+        const inputElement = keyEvent.target as HTMLInputElement;
+        inputElement.setCustomValidity('');
+    },
+      handleLoginError(form: HTMLFormElement, authError: AuthenticationError) {
+        const usernameInput = form.elements.namedItem('username') as HTMLInputElement;
+        usernameInput.setCustomValidity(authError.message);
+      },
+      login: async function (submitEvent: Event) {
+          const form = submitEvent.target as HTMLFormElement;
+          try {
+              const typedAuthentication: Authentication = this.authentication;
+              await typedAuthentication.login(this.username, this.password);
+              this.redirectToHome();
+          } catch(e) {
+              if(!AuthenticationError.isAuthenticationError(e))
+                throw e;
+              this.handleLoginError(form, e);
+          }
+      }
   }
-}
+});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -103,16 +131,7 @@ body {
 }
 
 .image {
-    width: 360px;
-    height: 280px
-}
-
-.border-line {
-    border-right: 1px solid #EEEEEE
-}
-
-.text-sm {
-    font-size: 14px !important
+    width: 95%;
 }
 
 ::placeholder {
@@ -161,11 +180,6 @@ button:focus {
     outline-width: 0
 }
 
-a {
-    color: inherit;
-    cursor: pointer
-}
-
 .btn-pink {
     background-color: #f165df;
     width: 150px;
@@ -179,20 +193,7 @@ a {
     cursor: pointer
 }
 
-@media screen and (max-width: 991px) {
-    .logo {
-        margin-left: 0px
-    }
-
-    .image {
-        width: 300px;
-        height: 220px
-    }
-
-    .border-line {
-        border-right: none
-    }
-
+@media screen and (max-width: 768px) {
     .card2 {
         border-top: 1px solid #EEEEEE !important;
         margin: 0px 15px

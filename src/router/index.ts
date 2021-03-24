@@ -23,7 +23,7 @@ const routes: RouteConfig[] = [
     name: 'LoginPage',
     component: LoginPage,
     beforeEnter: createRouteGuardBasedOnLogin(false, '/home'),
-    props: { authentication: authenticationService }
+    props: { authentication: authenticationService, redirectToHome: () => { router.push('/home') } }
   },
   {
     path: '/registration',
