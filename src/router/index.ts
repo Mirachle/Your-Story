@@ -37,9 +37,9 @@ const routes: RouteConfig[] = [
     name: 'HomePage',
     component: HomePage,
     beforeEnter: createRouteGuardBasedOnLogin(true, '/'),
-    props: { authentication: authenticationService }
+    props: { authentication: authenticationService, redirectToLogin: () => { router.push('/')} }
   }
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
