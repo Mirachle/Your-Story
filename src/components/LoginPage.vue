@@ -15,14 +15,14 @@
                         <form @submit.prevent="login">
                             <div class="row px-3">
                                 <label>
-                                    <h3>Felhasználónév</h3>
+                                    <h2>Felhasználónév</h2>
                                 </label>
                                 <input v-on:keyup="clearCustomValidityFor" v-model="username" type="text" name="username" placeholder="Felhasználónév">
                             </div>
 
                             <div class="row px-3">
                                 <label>
-                                    <h3>Jelszó</h3>
+                                    <h2>Jelszó</h2>
                                 </label>
                                 <input v-model="password" type="password" name="password" placeholder="Jelszó">
                             </div>
@@ -35,11 +35,11 @@
                                 <button type="submit" class="btn btn-pink text-center">Bejelentkezés</button>
                             </div>
 
-                            <div class="row font-weight-bold black text-end">
-                                <small>Még nem regisztráltál?
+                            <div class="row font-weight-bold text-end">
+                                <div class="black">Még nem regisztráltál?
                                     <router-link to="/registration" class="fuchsia">Regisztáció</router-link>
                                     <router-view/>
-                                </small>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -98,6 +98,7 @@ export default Vue.extend({
 
 .black{
     color:black;
+    font-size: large;
 }
 
 .text-end{
@@ -124,6 +125,7 @@ body {
     border-radius: 0px;
     height: 80vh;
     margin: 10vh;
+    background-color: white;
 }
 
 .card2 {
@@ -137,7 +139,8 @@ body {
 ::placeholder {
     color: #BDBDBD;
     opacity: 1;
-    font-weight: 300
+    font-weight: 300;
+    font-size: large;
 }
 
 :-ms-input-placeholder {
@@ -162,6 +165,7 @@ textarea {
     color: #2C3E50;
     font-size: 14px;
     letter-spacing: 1px;
+    font-size: large;
 }
 
 input:focus,
@@ -186,6 +190,7 @@ button:focus {
     color: #fff;
     border-radius: 3px;
     margin: 20px 0 20px;
+    font-size: x-large;
 }
 
 .btn-pink:hover {
