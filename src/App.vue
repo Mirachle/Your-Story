@@ -11,3 +11,11 @@ export default Vue.extend({
   name: 'App'
 });
 </script>
+
+<style>
+#app {
+    color: #f165df;
+    font-family: 'Gabriola';
+    background-color: #fcf8fb;
+}
+</style>
