@@ -1,6 +1,7 @@
 import { RawSituation } from './RawSituation';
 import { Situation } from '../Situation';
 import { Mood } from '../Mood';
+import { Boy } from '../Boy';
 
 // TODO: rename pictures
 export class SituationTreeFactory {
@@ -8,12 +9,14 @@ export class SituationTreeFactory {
     public createSituationTree(boyName: string, rawSituations: RawSituation[]): Situation {
         const situationHashedById: Record<string, Situation> = {};
         for (const rawSituation of rawSituations) {
+            const boy: Boy | undefined = rawSituation.boyMood ? {
+                image: this.getImageForBoy(boyName, rawSituation.boyMood),
+                mood: rawSituation.boyMood,
+                name: boyName
+            } : undefined;
+
             situationHashedById[rawSituation.id] = {
-                boy: {
-                    image: this.getImageForBoy(boyName, rawSituation.boyMood),
-                    mood: rawSituation.boyMood,
-                    name: boyName
-                },
+                boy,
                 scene: {
                     image: rawSituation.scene.image
                 },

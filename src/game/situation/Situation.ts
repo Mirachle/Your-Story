@@ -3,7 +3,7 @@ import { Scene } from './Scene';
 import { Dialogue } from './Dialogue';
 
 export type Situation = {
-    boy: Boy;
+    boy?: Boy;
     scene: Scene;
     dialogue: Dialogue;
 }

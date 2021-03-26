@@ -1,7 +1,10 @@
 import { Mood } from '../Mood';
 export type RawSituation = {
     id: string;
-    boyMood: Mood;
+    // boy?: { // TODO: make this structure, instead of the current one
+    //     mood: Mood
+    // };
+    boyMood: Mood | null;
     scene: { image: string };
     dialogue: {
         name: string;
