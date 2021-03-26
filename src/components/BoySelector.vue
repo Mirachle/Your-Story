@@ -3,13 +3,13 @@
         <h1>Válaszd ki melyik fiúval szeretnél elmenni randevúra.</h1>
         <div class="bottom">
             <div class="col-md-4 center box" @click="selectBoy('béla')">
-                <img class="img-responsive" src="@/assets/b1/b1_normal.png" />
+                <img class="img-responsive" src="@/assets/béla/béla_normal.png" />
             </div>
             <div class="col-md-4 center box" @click="selectBoy('athem')">
-                <img class="img-responsive" src="@/assets/b2/b2_normal.png" />
+                <img class="img-responsive" src="@/assets/athem/athem_normal.png" />
             </div>
             <div class="col-md-4 center box" @click="selectBoy('ágoston')">
-                <img class="img-responsive" src="@/assets/b3/b3_normal.png" />
+                <img class="img-responsive" src="@/assets/ágoston/ágoston_normal.png" />
             </div>
         </div>
     </div>
