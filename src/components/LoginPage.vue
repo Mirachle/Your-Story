@@ -198,10 +198,13 @@ button:focus {
     cursor: pointer
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 994px) {
     .card2 {
         border-top: 1px solid #EEEEEE !important;
         margin: 0px 15px
+    }
+    .card0 {
+        height: 100%;
     }
 }
 </style>

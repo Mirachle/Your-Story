@@ -1,7 +1,7 @@
 <template>
     <div class="home-page">
         <div class="center">
-            <div class="card card0 border-0 text-end">
+            <div class="card card0 text-end">
                 <span @click="logout" class="text-format">Kijelentkezés</span>
                 <BoySelector v-on:select-situation="selectSituation" v-if="!situation"></BoySelector>
                 <Situation v-else :situation="situation"></Situation>
@@ -48,11 +48,14 @@ export default Vue.extend({
 <style scoped>
 
 .text-format {
-    margin: 2px 8px;
     cursor: pointer;
     color: #ce56ce;
     font: x-large 'Gabriola';
     width: 100px;
+    position: absolute;
+    top: 2px;
+    right: 8px;
+    z-index: 1;
 }
 
 .text-end {
@@ -74,7 +77,7 @@ export default Vue.extend({
     background-color: white;
 }
 
-@media only screen and (max-width: 990px) {
+@media only screen and (max-width: 991.9px) {
    .card0 {
         height: 100%;
     }
