@@ -1,5 +1,5 @@
 <template>
-    <div :style="{ backgroundImage: sceneBackground }" class="bg-image">
+    <div :style="{ backgroundImage: sceneBackgroundImage }" class="bg-image">
         <div class="speech">{{ situation.dialogue.name }}: {{ situation.dialogue.text }}</div>
         <img v-if="situation.boy" id="boy-image" :src="boyImage">
         <div class="rows-container">
@@ -23,14 +23,10 @@ export default Vue.extend({
     },
     computed: {
         sceneBackgroundImage() {
-            return `url(${require(this.situation.scene.image)})`;
+            return `url(${require('@/assets/' + this.situation.scene.image)})`;
         },
         boyImage() {
-            const boyName = this.situation.boy.name;
-            const mood = this.situation.boy.mood;
-            // TODO: do this shit;
-            // https://stackoverflow.com/questions/42118296/dynamically-import-images-from-a-directory-using-webpack
-            return require(`@/assets/${boyName}/${boyName}_${mood}.png`);
+            return require(`@/assets/${this.situation.boy.image}`);
         }
     },
     methods: {
@@ -84,7 +80,6 @@ export default Vue.extend({
 }
 
 .bg-image {
-    background-image: url('../assets/scenes/pub.jpg');
     width: auto;
     height: 100%;
     background-size: contain;

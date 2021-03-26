@@ -6,7 +6,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-0",
         'boyMood': null,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "",
             "text": "",
@@ -22,7 +22,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-1",
         'boyMood': null,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "",
             "text": "",
@@ -38,7 +38,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-2",
         'boyMood': null,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "",
             "text": "",
@@ -54,7 +54,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-3",
         'boyMood': null,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "",
             "text": "",
@@ -70,7 +70,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-4",
         "boyMood": Mood.NORMAL,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "",
             "text": "",
@@ -86,7 +86,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-5",
         "boyMood": Mood.NORMAL,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Szia, én pedig Athem. Mit iszol?",
@@ -112,7 +112,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-6",
         "boyMood": Mood.NORMAL,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Oké.",
@@ -128,7 +128,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-7",
         "boyMood": Mood.HAPPY,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Szuper!",
@@ -144,7 +144,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-8",
         "boyMood": Mood.SAD,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Hát jó.",
@@ -160,7 +160,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-9",
         "boyMood": Mood.BLUSHED,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "",
             "text": "",
@@ -181,7 +181,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-10",
         "boyMood": Mood.NORMAL,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "És amúgy te..?",
@@ -197,7 +197,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-11",
         "boyMood": Mood.HAPPY,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "",
             "text": "",
@@ -213,7 +213,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-12",
         "boyMood": Mood.NORMAL,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "És amúgy te itt laksz a városban?",
@@ -229,7 +229,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-13",
         "boyMood": Mood.NORMAL,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Én csak kollégista vagyok itt, egy pár száz kilométerre lévő kisvárosban nőttem fel.",
@@ -255,7 +255,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-14",
         "boyMood": Mood.ANGRY,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Ne haragudj, hogy csak ilyen messze a szülővárosomtól indították azt a képzést amire jelentkezni szerettem volna.",
@@ -276,7 +276,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-15",
         "boyMood": Mood.NORMAL,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Oké, rendben. Csak sokak nem értik, hogy nem minden városban van annyi lehetőség mint itt. Kevés helynek van ilyen jó hírneve webfejlesztés terén",
@@ -297,7 +297,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-16",
         "boyMood": Mood.ANGRY,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Figyelj, szerintem hagyjuk az egészet. Itt van a pia ára, csók.",
@@ -313,7 +313,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-17",
         "boyMood": null,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "",
             "text": "",
@@ -329,7 +329,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-18",
         "boyMood": Mood.NORMAL,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Igen, egy OKJ-s webfejlesztői képzésen veszek részt.",
@@ -350,7 +350,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-19",
         "boyMood": Mood.ANGRY,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Attól még, hogy kollégista vagyok nem kell egyből egyetemre járnom. OKJ-s webfejlesztői képzésen veszek részt.",
@@ -371,7 +371,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-20",
         "boyMood": Mood.SAD,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Hát nem pont ez lenne a lényege...",
@@ -387,7 +387,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-21",
         "boyMood": Mood.HAPPY,
-        "scene": { "image": "@/assets/scenes/pub.jpg" },
+        "scene": { "image": "scenes/pub.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Igen, már mások is mondták.",
@@ -403,7 +403,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-22",
         "boyMood": Mood.NORMAL,
-        "scene": { "image": "@/assets/scenes/street.jpg" },
+        "scene": { "image": "scenes/street.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "És egyébként, hogy hogy online ismerkedsz? Nem tűnik úgy, mint ha rászorulnál erre. Remélem nem érted félre..",
@@ -429,7 +429,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-23",
         "boyMood": Mood.SAD,
-        "scene": { "image": "@/assets/scenes/street.jpg" },
+        "scene": { "image": "scenes/street.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Persze, megértem. Viszont én sajnos nem egyéjszakást keresek. Sok sikert neked, szia!",
@@ -445,7 +445,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-24",
         "boyMood": Mood.NORMAL,
-        "scene": { "image": "@/assets/scenes/street.jpg" },
+        "scene": { "image": "scenes/street.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Remélem velem nem érzed magad zavarban. Jobban szereted, ha a srác kezdeményez?",
@@ -466,7 +466,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-25",
         "boyMood": null,
-        "scene": { "image": "@/assets/scenes/house.jpg" },
+        "scene": { "image": "scenes/house.jpg" },
         "dialogue": {
             "name": "",
             "text": "",
@@ -482,7 +482,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-26",
         "boyMood": Mood.BLUSHED,
-        "scene": { "image": "@/assets/scenes/house.jpg" },
+        "scene": { "image": "scenes/house.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Nagyon szépek a szemeid.",
@@ -503,7 +503,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-27",
         "boyMood": Mood.BLUSHED,
-        "scene": { "image": "@/assets/scenes/house.jpg" },
+        "scene": { "image": "scenes/house.jpg" },
         "dialogue": {
             "name": "",
             "text": "",
@@ -519,7 +519,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-28",
         "boyMood": Mood.SAD,
-        "scene": { "image": "@/assets/scenes/house.jpg" },
+        "scene": { "image": "scenes/house.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Mennem kell. Egyszer még találkozunk.",
@@ -535,7 +535,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-29",
         "boyMood": Mood.BLUSHED,
-        "scene": { "image": "@/assets/scenes/house.jpg" },
+        "scene": { "image": "scenes/house.jpg" },
         "dialogue": {
             "name": "",
             "text": "",
@@ -551,7 +551,7 @@ export const athemTree: RawSituation[] =
     {
         "id": "athem-30",
         "boyMood": Mood.BLUSHED,
-        "scene": { "image": "@/assets/scenes/house.jpg" },
+        "scene": { "image": "scenes/house.jpg" },
         "dialogue": {
             "name": "Athem",
             "text": "Jó éjszakát, remélem minél előbb újra találkozunk.",

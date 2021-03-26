@@ -43,6 +43,6 @@ export class SituationTreeFactory {
     }
 
     private getImageForBoy(boyName: string, mood: Mood) {
-        return `@/assets/${boyName}/${boyName}_${mood}.png`;
+        return `${boyName}/${boyName}_${mood}.png`;
     }
 }
