@@ -3,8 +3,8 @@
         <div class="center">
             <div class="card card0 text-end">
                 <span @click="logout" class="text-format">Kijelentkezés</span>
-                <BoySelector v-on:select-situation="selectSituation" v-if="!situation"></BoySelector>
-                <Situation v-else :situation="situation"></Situation>
+                <BoySelector v-on:select-situation="setSituation" v-if="!situation"></BoySelector>
+                <Situation v-else v-on:select-next-situation="setSituation" :situation="situation"></Situation>
             </div>
         </div>
     </div>
@@ -36,7 +36,7 @@ export default Vue.extend({
             typedAuthentication.logout();
             this.redirectToLogin();
       },
-      selectSituation(situation: Situation) {
+      setSituation(situation: Situation) {
           this.situation = situation;
       }
     }
