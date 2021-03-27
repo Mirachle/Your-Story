@@ -22,7 +22,7 @@ export class TextFormatter {
         }
     }.bind(this);
 
-    public formateTemplateText(text: string): string {
+    public formatTemplateText(text: string): string {
         return text.replace(TextFormatter.TEMPLATE_REGEXP, this.replaceTemplateToText);
     }
 }
