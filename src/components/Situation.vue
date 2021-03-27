@@ -1,9 +1,11 @@
 <template>
     <div :style="{ backgroundImage: sceneBackgroundImage }" class="bg-image">
-        <div class="speech">{{ situation.dialogue.name }}: {{ situation.dialogue.text }}</div>
+        <div v-if="speech" class="speech">{{ speech }}</div>
         <img v-if="situation.boy" id="boy-image" :src="boyImage">
         <div class="rows-container">
-            <div @click="choseAnswer(answer)" class="answer-row" v-for="(answer, index) in situation.dialogue.answers" :key="index">{{ answer.text }}</div>
+            <div @click="choseAnswer(answer)" class="answer-row" v-for="(answer, index) in situation.dialogue.answers" :key="index">
+                {{ textFormatter.formatTemplateText(answer.text) }}
+            </div>
         </div>
     </div>
 </template>
@@ -13,12 +15,17 @@
 import Vue from 'vue';
 import { Situation } from '@/game/situation/Situation';
 import { Answer } from '@/game/situation/Answer';
+import { TextFormatter } from '@/game/formatter/TextFormatter';
 
 export default Vue.extend({
     props: {
         situation: {
             required: true,
             type: Object as () => Situation
+        },
+        textFormatter: {
+            required: true,
+            type: Object as () => TextFormatter
         }
     },
     computed: {
@@ -27,6 +34,9 @@ export default Vue.extend({
         },
         boyImage() {
             return require(`@/assets/${this.situation.boy.image}`);
+        },
+        speech() {
+            return [this.situation.dialogue.name, this.situation.dialogue.text].filter(Boolean).join(': ');
         }
     },
     methods: {

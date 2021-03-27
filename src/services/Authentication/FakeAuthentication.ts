@@ -5,6 +5,10 @@ export class FakeAuthentication implements Authentication {
   private static readonly SAVED_USER_NAMES_KEY: string = 'savedUserNames';
   private storage: Storage;
   private _isLoggedIn: boolean = false;
+
+  // TODO: remove this when session handler is implemented
+  private currentUsername: string;
+
   public isLoggedIn(): boolean {
     return this._isLoggedIn
   }
@@ -27,6 +31,7 @@ export class FakeAuthentication implements Authentication {
       throw new AuthenticationError('Helytelen felhasználónév vagy jelszó.');
     }
     this._isLoggedIn = true;
+    this.currentUsername = username;
   }
 
   public async register(username: string, _password: string): Promise<void> {
@@ -44,6 +49,11 @@ export class FakeAuthentication implements Authentication {
   }
 
   public async logout(): Promise<void> {
-      this._isLoggedIn = false;
+    this.currentUsername = null;
+    this._isLoggedIn = false;
+  }
+
+  public getUsername(): string {
+    return this.currentUsername;
   }
 }

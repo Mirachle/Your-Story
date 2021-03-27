@@ -3,8 +3,8 @@
         <div class="center">
             <div class="card card0 text-end">
                 <span @click="logout" class="text-format">Kijelentkezés</span>
-                <BoySelector v-on:select-situation="setSituation" v-if="!situation"></BoySelector>
-                <Situation v-else v-on:select-next-situation="setSituation" :situation="situation"></Situation>
+                <BoySelector v-on:select-situation="setSituation" v-if="!situation" />
+                <Situation v-else v-on:select-next-situation="setSituation" :situation="situation" :textFormatter="textFormatter" />
             </div>
         </div>
     </div>
@@ -17,13 +17,18 @@ import { Authentication } from '@/services/Authentication';
 import Vue from 'vue';
 import BoySelector from './BoySelector.vue';
 import SituationView from './Situation.vue';
+import { TextFormatter } from '../game/formatter/TextFormatter';
 
 export default Vue.extend({
     name: 'HomePage',
-  props: ['authentication', 'redirectToLogin'],
+    props: ['authentication', 'redirectToLogin'],
+    beforeMount() {
+        this.textFormatter = new TextFormatter({ username: this.authentication.getUsername() }, console);
+    },
     data() {
         return {
-            situation: null as Situation
+            situation: null as Situation,
+            TextFormatter: null as TextFormatter
         }
     },
     components: {
