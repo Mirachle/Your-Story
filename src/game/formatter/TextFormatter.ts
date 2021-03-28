@@ -1,4 +1,4 @@
-import { Logger } from '@/Logger';
+import { Logger } from '@/services/Logger';
 
 export class TextFormatter {
     private static readonly TEMPLATE_REGEXP = /\@\{(\w+)\}/g;

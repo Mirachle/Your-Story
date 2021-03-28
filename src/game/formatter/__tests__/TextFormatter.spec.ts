@@ -1,5 +1,5 @@
 import { TextFormatter } from '../TextFormatter';
-import { Logger } from '../../../Logger';
+import { Logger } from '../../../services/Logger';
 
 const noop = (..._args: any[]) => {};
 
