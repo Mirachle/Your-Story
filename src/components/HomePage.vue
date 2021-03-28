@@ -3,7 +3,7 @@
         <div class="center">
             <div class="card card0 text-end">
                 <span @click="logout" class="text-format">Kijelentkezés</span>
-                <BoySelector v-on:select-situation="setSituation" v-if="!situation" />
+                <BoySelector v-on:select-boy="selectBoy" v-if="!situation" />
                 <Situation v-else v-on:select-next-situation="setSituation" :situation="situation" :textFormatter="textFormatter" />
             </div>
         </div>
@@ -18,12 +18,17 @@ import Vue from 'vue';
 import BoySelector from './BoySelector.vue';
 import SituationView from './Situation.vue';
 import { TextFormatter } from '../game/formatter/TextFormatter';
+import { ApplicationStateHolder } from '@/state/ApplicationStateHolder';
+import { ApplicationState } from '@/state/ApplicationState';
+import { SituationTreeFactory } from '@/game/situation/trees/SituationTreeFactory';
+import { TREES } from '@/game/situation/trees/Trees';
 
 export default Vue.extend({
     name: 'HomePage',
-    props: ['authentication', 'redirectToLogin'],
+    props: ['authentication', 'redirectToLogin', 'applicationStateHolder'],
     beforeMount() {
-        this.textFormatter = new TextFormatter({ username: this.authentication.getUsername() }, console);
+        this.situation = this.applicationStateHolder.get().game.currentSituation
+        this.textFormatter = new TextFormatter({ username: this.applicationStateHolder.get().userData.username }, console);
     },
     data() {
         return {
@@ -41,7 +46,33 @@ export default Vue.extend({
             typedAuthentication.logout();
             this.redirectToLogin();
       },
+      selectBoy(boyName: string) {
+          debugger;
+          const rootNode = new SituationTreeFactory().createSituationTree(boyName, TREES[boyName]);
+          const stateHolder: ApplicationStateHolder = this.applicationStateHolder;
+          const oldState: ApplicationState = stateHolder.get();
+          stateHolder.set({
+              ...oldState,
+              game: {
+                  ...oldState.game,
+                  selectedBoyName: boyName,
+                  rootSituation: rootNode,
+                  currentSituation: rootNode
+              }
+          })
+          this.situation = rootNode;
+      },
       setSituation(situation: Situation) {
+          // TODO: extract this
+          const stateHolder: ApplicationStateHolder = this.applicationStateHolder;
+          const oldState: ApplicationState = stateHolder.get();
+          stateHolder.set({
+              ...oldState,
+              game: {
+                  ...oldState.game,
+                  currentSituation: situation
+              }
+          })
           this.situation = situation;
       }
     }

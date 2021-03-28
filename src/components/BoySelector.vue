@@ -17,30 +17,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { SituationTreeFactory } from '@/game/situation/trees/SituationTreeFactory';
-import { athemTree } from '@/game/situation/trees/Athem';
-import { RawSituation } from '@/game/situation/trees/RawSituation';
-import { belaTree } from '../game/situation/trees/Bela';
-import { agostonTree } from '../game/situation/trees/Agoston';
-
 export default Vue.extend({
     name: 'BoySelector',
     methods: {
         selectBoy(boyName: 'bela' | 'athem' | 'agoston') {
-            let rawSituations: Array<RawSituation>;
-            switch(boyName) {
-                case 'athem':
-                    rawSituations = athemTree;
-                    break;
-                case 'bela':
-                    rawSituations = belaTree;
-                    break;
-                case 'agoston':
-                    rawSituations = agostonTree;
-                    break;
-            }
-            const processedTree = new SituationTreeFactory().createSituationTree(boyName, rawSituations);
-            this.$emit('select-situation', processedTree);
+            debugger;
+            this.$emit('select-boy', boyName);
         }
     }
 })
