@@ -6,7 +6,7 @@ import { Boy } from '../Boy';
 // TODO: rename pictures
 export class SituationTreeFactory {
     private static readonly ROOT_ID_SUFFIX = '-0';
-    public createSituationTree(boyName: string, rawSituations: RawSituation[]): Situation {
+    public createSituationTree(boyName: string, rawSituations: RawSituation[], id?: string): Situation {
         const situationHashedById: Record<string, Situation> = {};
         for (const rawSituation of rawSituations) {
             const boy: Boy | undefined = rawSituation.boyMood ? {
@@ -16,6 +16,7 @@ export class SituationTreeFactory {
             } : undefined;
 
             situationHashedById[rawSituation.id] = {
+                id: rawSituation.id,
                 boy,
                 scene: {
                     image: rawSituation.scene.image
@@ -39,7 +40,8 @@ export class SituationTreeFactory {
                 answer.followingSituation =  situationHashedById[answer.followingSituationId];
             }
         }
-        return situationHashedById[boyName + SituationTreeFactory.ROOT_ID_SUFFIX];
+        const entryNode = situationHashedById[id] || situationHashedById[boyName + SituationTreeFactory.ROOT_ID_SUFFIX];
+        return  entryNode
     }
 
     private getImageForBoy(boyName: string, mood: Mood) {
