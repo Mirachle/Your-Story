@@ -6,13 +6,23 @@ import HomePage from '@/components/HomePage.vue';
 import { AccountService } from '../services/Account/AccountService';
 import { getApplicationStateHolder } from '../app-init';
 import { FakeAuthentication } from '../services/Authentication/FakeAuthentication';
+import { ApplicationStatePersister } from '@/services/ApplicationStateReadWriter/ApplicationStatePersister'
+import { StateMapper } from '@/state/serialization/StateMapper'
+import { JSONStateSerializer } from '@/state/serialization/JSONStateSerializer'
+
+const createApplicationStatePersister = (): ApplicationStatePersister => {
+  const serializer = new JSONStateSerializer();
+  const stateMapper = new StateMapper();
+  const applicationStatePersister = new ApplicationStatePersister(localStorage, serializer, stateMapper);
+  return applicationStatePersister;
+}
 
 
 Vue.use(VueRouter);
-
-const applicationStateHolder = getApplicationStateHolder();
+const applicationStatePersister = createApplicationStatePersister();
+const applicationStateHolder = getApplicationStateHolder(applicationStatePersister);
 const authenticationService = new FakeAuthentication(localStorage);
-const accountService = new AccountService(authenticationService, applicationStateHolder);
+const accountService = new AccountService(authenticationService, applicationStateHolder, applicationStatePersister);
 
 const createRouteGuardBasedOnLogin = (isUserShouldBeLoggedIn: boolean, redirectPath: string): NavigationGuard => {
   return (_to, _from, next) => {
