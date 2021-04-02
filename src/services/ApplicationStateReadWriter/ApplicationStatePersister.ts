@@ -4,6 +4,7 @@ import { EMPTY_APPLICATION_STATE } from '../../state/ApplicationState';
 import { Serializer } from '../../state/serialization/Serializer';
 import { StateMapper, MappedState } from '../../state/serialization/StateMapper';
 import { MemoryApplicationStateHolder } from '../../state/MemoryApplicationStateHolder';
+import { Game } from '@/state/Game'
 
 type ApplicationStatesByUserName = Record<UserData['username'], ApplicationState>;
 type MappedApplicationStatesByUserName = Record<UserData['username'], MappedState>;
@@ -24,7 +25,7 @@ export class ApplicationStatePersister {
 
     public persistState(applicationState: ApplicationState): void {
         const username = applicationState.userData?.username;
-        
+
         if (username) {
             this.persistStateWithUser(username, applicationState);
         } else {
@@ -39,7 +40,7 @@ export class ApplicationStatePersister {
         return savedStates[username] || EMPTY_APPLICATION_STATE;
     }
 
-    private persistStateWithUser(username: string, applicationState: Readonly<{ userData: UserData; game: import("c:/Users/Minori/Documents/szakdolgozat/your-story-original/src/state/Game").Game; }>) {
+    private persistStateWithUser(username: string, applicationState: Readonly<{ userData: UserData; game: Game; }>) {
         const states = this.getSavedStates();
         states[username] = applicationState;
         this.persistSavedStates(states);
@@ -72,7 +73,7 @@ export class ApplicationStatePersister {
         const mappedStates = Object.entries(states)
             .map(([username, state]) => ({ username, mappedState: this.mapper.map(state) }))
             .reduce((accumulator, entry) => ({...accumulator, [entry.username]: entry.mappedState}), {} as MappedApplicationStatesByUserName);
-    
+
         const serializedStates = this.serializer.serialize(mappedStates);
         this.storage.setItem(ApplicationStatePersister.SAVED_APPLICATION_STATES_KEY, serializedStates);
     }

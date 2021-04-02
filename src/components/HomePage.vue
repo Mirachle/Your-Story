@@ -27,8 +27,12 @@ export default Vue.extend({
     name: 'HomePage',
     props: ['authentication', 'redirectToLogin', 'applicationStateHolder'],
     beforeMount() {
-        this.situation = this.applicationStateHolder.get().game.currentSituation
-        this.textFormatter = new TextFormatter({ username: this.applicationStateHolder.get().userData.username }, console);
+        const applicationState = this.applicationStateHolder.get();
+        console.log({
+            applicationState
+        });
+        this.situation = applicationState.game?.currentSituation
+        this.textFormatter = new TextFormatter({ username: applicationState.userData.username }, console);
     },
     data() {
         return {
@@ -41,13 +45,12 @@ export default Vue.extend({
         Situation: SituationView
     },
     methods: {
-        logout: function () {
+        logout: async function () {
             const typedAuthentication: Authentication = this.authentication;
-            typedAuthentication.logout();
+            await typedAuthentication.logout();
             this.redirectToLogin();
       },
       selectBoy(boyName: string) {
-          debugger;
           const rootNode = new SituationTreeFactory().createSituationTree(boyName, TREES[boyName]);
           const stateHolder: ApplicationStateHolder = this.applicationStateHolder;
           const oldState: ApplicationState = stateHolder.get();

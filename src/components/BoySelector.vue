@@ -21,7 +21,6 @@ export default Vue.extend({
     name: 'BoySelector',
     methods: {
         selectBoy(boyName: 'bela' | 'athem' | 'agoston') {
-            debugger;
             this.$emit('select-boy', boyName);
         }
     }
@@ -40,7 +39,7 @@ h1{
     align-items: center;
     height: 100%;
     justify-content: center;
-    
+
 }
 .box:hover {
   box-shadow: 0 6px 35px 0 rgba(121, 4, 86, 0.247);

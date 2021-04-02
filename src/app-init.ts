@@ -1,4 +1,3 @@
-import { FakeAuthentication } from '@/services/Authentication/FakeAuthentication';
 import { PersistingApplicationStateHolderDecorator } from './state/PersistingApplicationStateHolderDecorator';
 import { MemoryApplicationStateHolder } from './state/MemoryApplicationStateHolder';
 import { ApplicationStatePersister } from './services/ApplicationStateReadWriter/ApplicationStatePersister';
