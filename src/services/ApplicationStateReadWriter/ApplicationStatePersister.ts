@@ -3,7 +3,6 @@ import { UserData } from '../../state/UserData';
 import { EMPTY_APPLICATION_STATE } from '../../state/ApplicationState';
 import { Serializer } from '../../state/serialization/Serializer';
 import { StateMapper, MappedState } from '../../state/serialization/StateMapper';
-import { MemoryApplicationStateHolder } from '../../state/MemoryApplicationStateHolder';
 import { Game } from '@/state/Game'
 
 type ApplicationStatesByUserName = Record<UserData['username'], ApplicationState>;
