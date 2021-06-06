@@ -16,7 +16,7 @@ export interface MappedState {
 
 export class StateMapper {
     public map(state: ApplicationState): MappedState {
-        const mappedGame: MappedGame = state.game
+        const mappedGame: MappedGame = state.game?.currentSituation
             ? {
                 boyName: state.game.selectedBoyName,
                 situationId: state.game.currentSituation.id
