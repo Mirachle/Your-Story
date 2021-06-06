@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "typeRoots": ["./types", "./node_modules/@types"],
     "target": "esnext",
     "module": "esnext",
     "strict": false,
@@ -11,7 +12,9 @@
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
-      "webpack-env"
+      "webpack-env", 
+      "reflect-metadata",
+      "jest"
     ],
     "paths": {
       "@/*": [
@@ -33,6 +36,8 @@
     "tests/**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/*.spec.ts",
+    "**/*.test.ts"
   ]
 }

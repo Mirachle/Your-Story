@@ -9,21 +9,21 @@
                         <form @submit.prevent="register">
                             <div class="row px-3">
                                 <label for="username">
-                                    <h4>Felhasználónév</h4>
+                                    <h2>Felhasználónév</h2>
                                 </label>
                                 <input v-on:keyup="clearCustomValidityFor" name="username" id="username" v-model="username" type="text" placeholder="Felhasználónév" required>
                             </div>
 
                             <div class="row px-3">
                                 <label for="password">
-                                    <h4>Jelszó</h4>
+                                    <h2>Jelszó</h2>
                                 </label>
                                 <input id="password" v-model="password" type="password" placeholder="Jelszó" required>
                             </div>
 
                             <div class="row px-3">
                                 <label for="password-comfirm">
-                                    <h4>Jelszó ismét</h4>
+                                    <h2>Jelszó ismét</h2>
                                 </label>
                                 <input v-on:keyup="clearCustomValidityFor" name="password-confirm" id="password-comfirm" v-model="passwordConfirmation" type="password" placeholder="Jelszó" required>
                             </div>
@@ -35,7 +35,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 center">
                     <div class="row center">
                         <img src="@/assets/allinone_original.png" class="image">
                     </div>
@@ -134,6 +134,7 @@ body {
     border-radius: 0px;
     height: 80vh;
     margin: 10vh;
+    background-color: white;
 }
 
 .card2 {
@@ -147,17 +148,18 @@ body {
 ::placeholder {
     color: #BDBDBD;
     opacity: 1;
-    font-weight: 300
+    font-weight: 300;
+    font-size: large;
 }
 
 :-ms-input-placeholder {
     color: #BDBDBD;
-    font-weight: 300
+    font-weight: 300;
 }
 
 ::-ms-input-placeholder {
     color: #BDBDBD;
-    font-weight: 300
+    font-weight: 300;
 }
 
 input,
@@ -172,6 +174,7 @@ textarea {
     color: #2C3E50;
     font-size: 14px;
     letter-spacing: 1px;
+    font-size: large;
 }
 
 input:focus,
@@ -196,6 +199,7 @@ button:focus {
     color: #fff;
     border-radius: 3px;
     margin: 20px 0 20px;
+    font-size: x-large;
 }
 
 .btn-pink:hover {
@@ -203,10 +207,13 @@ button:focus {
     cursor: pointer
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 994px) {
     .card2 {
         border-top: 1px solid #EEEEEE !important;
         margin: 0px 15px
+    }
+    .card0 {
+        height: 100%;
     }
 }
 </style>

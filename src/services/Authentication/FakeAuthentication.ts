@@ -1,13 +1,14 @@
 import { Authentication } from '../Authentication';
 import { AuthenticationError } from './AuthenticationError';
-// TODO: save the state in case of f5-refresh
+
+// TODO: put the code in the following order in every classes:
+// - public static variables, private static variables, private variables, constructor, public init, public metódusok, private metódusok
+// OR
+// - public variables, constructor
+
 export class FakeAuthentication implements Authentication {
   private static readonly SAVED_USER_NAMES_KEY: string = 'savedUserNames';
   private storage: Storage;
-  private _isLoggedIn: boolean = false;
-  public isLoggedIn(): boolean {
-    return this._isLoggedIn
-  }
 
   constructor(storage: Storage) {
     this.storage = storage;
@@ -20,20 +21,27 @@ export class FakeAuthentication implements Authentication {
     return savedUserNames;
   }
 
-  public async login(username: string, _password: string): Promise<void> {
-   const savedUserNames = this.readSavedUserNamesFromStorage();
+  private throwAuthenticationErrorIfUserNotFound(username: string, savedUserNames: Array<string>): void {
     const isMatch = savedUserNames.some(savedUserName => savedUserName === username);
     if (!isMatch) {
       throw new AuthenticationError('Helytelen felhasználónév vagy jelszó.');
     }
-    this._isLoggedIn = true;
+  }
+
+  public async login(username: string, _password: string): Promise<void> {
+    const savedUserNames = this.readSavedUserNamesFromStorage();
+    this.throwAuthenticationErrorIfUserNotFound(username, savedUserNames);
+  }
+
+  private throwAuthenticationErrorIfUserAlreadyExists(username: string, savedUserNames: Array<string>) {
+    if (savedUserNames.includes(username)){
+      throw new AuthenticationError("Ez a felhasználónév már létezik.") 
+    }
   }
 
   public async register(username: string, _password: string): Promise<void> {
     const savedUserNames = this.readSavedUserNamesFromStorage();
-    if (savedUserNames.includes(username)){
-      throw new AuthenticationError("Ez a felhasználónév már létezik.") 
-    }
+    this.throwAuthenticationErrorIfUserAlreadyExists(username, savedUserNames);
     this.saveNewUserNameInStorage(savedUserNames, username);
   }
 
@@ -44,6 +52,5 @@ export class FakeAuthentication implements Authentication {
   }
 
   public async logout(): Promise<void> {
-      this._isLoggedIn = false;
   }
 }
