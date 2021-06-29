@@ -2,14 +2,14 @@
     <div>
         <h1>Válaszd ki melyik fiúval szeretnél elmenni randevúra.</h1>
         <div class="bottom">
-            <div class="col-md-4 center box" @click="selectBoy('bela')">
-                <img class="img-responsive" src="@/assets/bela/bela_normal.png" />
+            <div class="col-md-4 center box" @click="selectBoy('aegon')">
+                <img class="img-responsive" src="@/assets/aegon/aegon_normal.png" />
             </div>
             <div class="col-md-4 center box" @click="selectBoy('athem')">
                 <img class="img-responsive" src="@/assets/athem/athem_normal.png" />
             </div>
-            <div class="col-md-4 center box" @click="selectBoy('agoston')">
-                <img class="img-responsive" src="@/assets/agoston/agoston_normal.png" />
+            <div class="col-md-4 center box" @click="selectBoy('aiden')">
+                <img class="img-responsive" src="@/assets/aiden/aiden_normal.png" />
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@ import Vue from 'vue'
 export default Vue.extend({
     name: 'BoySelector',
     methods: {
-        selectBoy(boyName: 'bela' | 'athem' | 'agoston') {
+        selectBoy(boyName: 'aegon' | 'athem' | 'aiden') {
             this.$emit('select-boy', boyName);
         }
     }
