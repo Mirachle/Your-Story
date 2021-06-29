@@ -36,7 +36,7 @@ export default Vue.extend({
             return require(`@/assets/${this.situation.boy.image}`);
         },
         speech() {
-            return [this.situation.dialogue.name, this.situation.dialogue.text].filter(Boolean).join(': ');
+            return [this.situation.dialogue.name, this.textFormatter.formatTemplateText(this.situation.dialogue.text)].filter(Boolean).join(': ');
         }
     },
     methods: {
@@ -86,7 +86,7 @@ export default Vue.extend({
     border-radius: 10px;
     max-width: 320px;
     top: 20%;
-    right: 10%;
+    right: 20%;
 }
 
 .bg-image {
