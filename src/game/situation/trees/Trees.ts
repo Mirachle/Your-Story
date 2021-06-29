@@ -1,11 +1,11 @@
-import { agostonTree } from './Agoston';
-import { belaTree } from './Bela';
+import { aidenTree } from './Aiden';
+import { aegonTree } from './Aegon';
 import { RawSituation } from './RawSituation';
 import { athemTree } from './Athem';
-type BoyName = 'athem' | 'bela' | 'agoston';
+type BoyName = 'athem' | 'aegon' | 'aiden';
 
 export const TREES: Record<BoyName, RawSituation[]> = {
-    agoston: agostonTree,
+    aiden: aidenTree,
     athem: athemTree,
-    bela: belaTree
+    aegon: aegonTree
 }
